@@ -65,7 +65,7 @@ app.post('/notify', function (req, res) {
     responseBody.order.invoice_number = requestBody.order.invoice_number;
     responseBody.security.check_sum = requestBody.security.check_sum;
 
-    res.send(null);
+    res.send(responseBody);
 });
 
 function randomInvoice(length) {
