@@ -17,8 +17,8 @@ It will return, `Application Started on port : 3000`
 And open in your browser : `http://localhost:3000/` and see the demonstration on the Demo Application Video
 
 ## Demo Application Video
-Klick the Video : <br />
-[![Watch the video](https://img.youtube.com/vi/FX0bcR-RN6Q/hqdefault.jpg)](https://youtu.be/FX0bcR-RN6Q)
+Click the Video : <br />
+[![Watch the video](https://img.youtube.com/vi/FX0bcR-RN6Q/hqdefault.jpg)](https://youtu.be/FX0bcR-RN6Q){:target="_blank"}.
 
 ## Help and Support
 
