@@ -1,6 +1,6 @@
 # Jokul NodeJs Example
 
-Official Demo Application for Java Library for [Jokul Java Library](https://github.com/PTNUSASATUINTIARTHA-DOKU/jokul-java-library). Visit [https://jokul.doku.com](https://jokul.doku.com) for more information about the product and [https://jokul.doku.com/docs](https://jokul.doku.com/docs) for the technical documentation.
+Official Demo Application for Java Library for [Jokul NodeJs Library](https://github.com/PTNUSASATUINTIARTHA-DOKU/jokul-nodejs-library). Visit [https://jokul.doku.com](https://jokul.doku.com) for more information about the product and [https://jokul.doku.com/docs](https://jokul.doku.com/docs) for the technical documentation.
 
 ## Requirements
 Node v10 or above
