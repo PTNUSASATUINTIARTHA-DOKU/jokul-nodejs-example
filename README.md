@@ -23,6 +23,6 @@ Click the Video : <br />
 
 ## Help and Support
 
-Got any issues? Found a bug? Have a feature requests? You can [open new issue](https://github.com/PTNUSASATUINTIARTHA-DOKU/jokul-java-example/issues/new).
+Got any issues? Found a bug? Have a feature requests? You can [open new issue](https://github.com/PTNUSASATUINTIARTHA-DOKU/jokul-nodejs-example/issues/new).
 
 For further information, you can contact us on [care@doku.com](mailto:care@doku.com).
