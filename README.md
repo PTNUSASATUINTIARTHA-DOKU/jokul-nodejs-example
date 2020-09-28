@@ -3,8 +3,8 @@
 Official Demo Application for Java Library for [Jokul Java Library](https://github.com/PTNUSASATUINTIARTHA-DOKU/jokul-java-library). Visit [https://jokul.doku.com](https://jokul.doku.com) for more information about the product and [https://jokul.doku.com/docs](https://jokul.doku.com/docs) for the technical documentation.
 
 ## Requirements
-
-Java 11 or above
+Node v10 or above
+Npm v6 or above
 
 ## Running Application
 
@@ -18,7 +18,6 @@ And open in your browser : `http://localhost:3000/` and see the demonstration on
 
 ## Demo Application
 [![Watch the video](https://img.youtube.com/vi/FX0bcR-RN6Q/hqdefault.jpg)](https://youtu.be/FX0bcR-RN6Q)
-
 
 ## Help and Support
 
