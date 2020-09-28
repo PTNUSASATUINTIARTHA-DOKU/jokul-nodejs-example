@@ -18,7 +18,7 @@ And open in your browser : `http://localhost:3000/` and see the demonstration on
 
 ## Demo Application Video
 Click the Video : <br />
-[![Watch the video](https://img.youtube.com/vi/FX0bcR-RN6Q/hqdefault.jpg)](https://youtu.be/FX0bcR-RN6Q){:target="_blank"}.
+[![Watch the video](https://img.youtube.com/vi/FX0bcR-RN6Q/hqdefault.jpg)](https://youtu.be/FX0bcR-RN6Q){:target="_blank"}
 
 ## Help and Support
 
