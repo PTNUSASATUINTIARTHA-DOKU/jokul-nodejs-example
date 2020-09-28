@@ -14,7 +14,7 @@ node index.js
 ```
 It will return, `Application Started on port : 3000`
 
-And open in your browser : `http://localhost:3000/` and see the demonstration on the Demo Application Video
+And open in your browser : `http://localhost:3000/` and see the demonstration on the <strong>Demo Application Video</strong>
 
 ## Demo Application Video
 Click the Video : <br />
