@@ -10,7 +10,7 @@ Npm v6 or above
 
 Run this command :
 ```
-Application Started on port : 3000 
+node index.js
 ```
 It will return, `Application Started on port : 3000`
 
