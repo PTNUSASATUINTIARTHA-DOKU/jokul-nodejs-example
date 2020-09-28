@@ -42,6 +42,32 @@ app.post('/generate-va', function (req, res) {
     res.send(responseMandiri);
 });
 
+app.post('/notify', function (req, res) {
+
+
+    let requestBody = dokuLib.NotifyRequestDto;
+    requestBody.client.id = req.client.id;
+    requestBody.virtual_account_info.virtual_account_number = req.body.virtual_account_info.virtual_account_number;
+    requestBody.order.amount = req.body.order.amount;
+    requestBody.virtual_account_payment.date = req.body.virtual_account_payment.date;
+    requestBody.virtual_account_payment.channel_code = req.body.virtual_account_payment.channel_code;
+    requestBody.virtual_account_payment.reference_number = req.body.virtual_account_payment.reference_number;
+    requestBody.virtual_account_payment.systrace_number = req.body.virtual_account_payment.systrace_number;
+    requestBody.order.invoice_number = req.body.order.invoice_number;
+    requestBody.security.check_sum = req.body.security.check_sum;
+
+    // Input your process here
+
+    let responseBody = dokuLib.NotifyResponseDto;
+    responseBody.client.id = requestBody.client.id;
+    responseBody.virtual_account_info.virtual_account_number = requestBody.virtual_account_info.virtual_account_number;
+    responseBody.order.amount = requestBody.order.amount;
+    responseBody.order.invoice_number = requestBody.order.invoice_number;
+    responseBody.security.check_sum = requestBody.security.check_sum;
+
+    res.send(null);
+});
+
 function randomInvoice(length) {
     let result = '';
     let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
