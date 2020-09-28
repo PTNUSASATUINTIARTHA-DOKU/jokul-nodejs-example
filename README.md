@@ -19,7 +19,7 @@ And open in your browser : `http://localhost:3000/` and see the demonstration on
 ## Demo Application Video
 Click the Video : <br />
 
-[<img src="https://img.youtube.com/vi/FX0bcR-RN6Q/hqdefault.jpg" width="50%">](https://youtu.be/FX0bcR-RN6Q>)
+[<img src="https://img.youtube.com/vi/FX0bcR-RN6Q/hqdefault.jpg" width="50%">](https://youtu.be/FX0bcR-RN6Q)
 
 ## Help and Support
 
