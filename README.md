@@ -4,21 +4,27 @@ Official Demo Application for Java Library for [Jokul Java Library](https://gith
 
 ## Requirements
 
-Java 11 or above
+Node v10 or above<br />
+Npm v6 or above
 
 ## Running Application
 
 Run this command :
 ```
-mvn spring-boot:run 
+node index.js
 ```
+It will return, `Application Started on port : 3000`
 
-## Demo Application
-[![Watch the video](https://img.youtube.com/vi/FX0bcR-RN6Q/hqdefault.jpg)](https://youtu.be/FX0bcR-RN6Q)
+And open in your browser : `http://localhost:3000/` and see the demonstration on the <strong>Demo Application Video</strong>
+
+## Demo Application Video
+Click the Video : <br />
+
+[<img src="https://img.youtube.com/vi/FX0bcR-RN6Q/hqdefault.jpg" width="50%">](https://youtu.be/FX0bcR-RN6Q)
 
 
 ## Help and Support
 
-Got any issues? Found a bug? Have a feature requests? You can [open new issue](https://github.com/PTNUSASATUINTIARTHA-DOKU/jokul-java-example/issues/new).
+Got any issues? Found a bug? Have a feature requests? You can [open new issue](https://github.com/PTNUSASATUINTIARTHA-DOKU/jokul-nodejs-example/issues/new).
 
 For further information, you can contact us on [care@doku.com](mailto:care@doku.com).
