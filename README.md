@@ -11,7 +11,7 @@ Npm v6 or above
 
 Run this command :
 ```
-node index.js
+node index.js /devex/demo/nodejs-library
 ```
 It will return, `Application Started on port : 3000`
 
