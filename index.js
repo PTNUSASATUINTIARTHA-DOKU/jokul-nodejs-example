@@ -2,7 +2,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const dokuLib = require('jokul-nodejs-library');
 
-
 const app = express();
 const port = 3000;
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -16,8 +15,6 @@ app.get(apiPath + '', (req, res) => {
 });
 
 app.post(apiPath + '/generate-va', function (req, res) {
-
-    var response;
     var channel = req.body.channel;
 
     let setupConfiguration = dokuLib.SetupConfiguration;
@@ -39,16 +36,32 @@ app.post(apiPath + '/generate-va', function (req, res) {
     paymentCodeRequest.virtual_account_info.reusable_status = req.body.reusableStatus;
     paymentCodeRequest.virtual_account_info.expired_time = req.body.expiredTime != null ? req.body.expiredTime : '';
 
-    if (channel == 'mandiri') {
-        response = dokuLib.generateMandiriVa(setupConfiguration,paymentCodeRequest);
-    } else if (channel == 'doku') {
-        response = dokuLib.generateDOKUVa(setupConfiguration, paymentCodeRequest);
-    } else if (channel == 'mandiri-syariah') {
-        //do something
+    (async function () {
+        let response = await post(setupConfiguration, paymentCodeRequest, channel);
+        res.send(response);
+    })();
+
+});
+
+async function post(setupConfiguration, paymentCodeRequest, channel) {
+    try {
+        let response;
+
+        if (channel == 'mandiri') {
+            response = await dokuLib.generateMandiriVa(setupConfiguration, paymentCodeRequest);
+        } else if (channel == 'doku') {
+            response = await dokuLib.generateDOKUVa(setupConfiguration, paymentCodeRequest);
+        } else if (channel == 'mandiri-syariah') {
+            //do something
+        }
+
+        return response;
+    } catch (error) {
+        console.log(error);
+        return null;
     }
 
-    res.send(response);
-});
+}
 
 app.post(apiPath + '/notify', function (req, res) {
     let requestBody = dokuLib.NotifyRequestDto;
