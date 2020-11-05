@@ -5,18 +5,20 @@ const dokuLib = require('jokul-nodejs-library');
 
 const app = express();
 const port = 3000;
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(bodyParser.json());
 
-let path = require("path");
-let absolutePath = path.resolve('');
+let apiPath = process.argv.slice(2).join('');
 
-app.get('/', (req, res) => {
-    res.sendFile(absolutePath + '/generate-payment-code.html');
+app.get(apiPath + '', (req, res) => {
+    res.sendFile(__dirname + '/generate-payment-code.html');
 });
 
-app.post('/generate-va', function (req, res) {
+app.post(apiPath + '/generate-va', function (req, res) {
+
+    var response;
+    var channel = req.body.channel;
 
     let setupConfiguration = dokuLib.SetupConfiguration;
     setupConfiguration.environment = req.body.environment;
@@ -24,9 +26,9 @@ app.post('/generate-va', function (req, res) {
     setupConfiguration.merchant_name = req.body.merchantName;
     setupConfiguration.shared_key = req.body.sharedKey;
     setupConfiguration.serverLocation = dokuLib.getServerLocation(setupConfiguration.environment);
+    setupConfiguration.channel = channel;
 
     let paymentCodeRequest = dokuLib.PaymentCodeRequestDto;
-    paymentCodeRequest.client.id = setupConfiguration.client_id;
     paymentCodeRequest.customer.name = req.body.customerName;
     paymentCodeRequest.customer.email = req.body.email;
     paymentCodeRequest.order.invoice_number = randomInvoice(30);
@@ -35,35 +37,25 @@ app.post('/generate-va', function (req, res) {
     paymentCodeRequest.virtual_account_info.info2 = req.body.info2;
     paymentCodeRequest.virtual_account_info.info3 = req.body.info3;
     paymentCodeRequest.virtual_account_info.reusable_status = req.body.reusableStatus;
-    paymentCodeRequest.virtual_account_info.expired_time = req.body.expiredTime;
-    paymentCodeRequest.security.check_sum = dokuLib.getCheckSum(setupConfiguration, paymentCodeRequest);
-    let responseMandiri = dokuLib.generateMandiriVa(setupConfiguration.serverLocation, paymentCodeRequest);
+    paymentCodeRequest.virtual_account_info.expired_time = req.body.expiredTime != null ? req.body.expiredTime : '';
 
-    res.send(responseMandiri);
+    if (channel == 'mandiri') {
+        response = dokuLib.generateMandiriVa(setupConfiguration,paymentCodeRequest);
+    } else if (channel == 'doku') {
+        response = dokuLib.generateDOKUVa(setupConfiguration, paymentCodeRequest);
+    } else if (channel == 'mandiri-syariah') {
+        //do something
+    }
+
+    res.send(response);
 });
 
-app.post('/notify', function (req, res) {
-
-
+app.post(apiPath + '/notify', function (req, res) {
     let requestBody = dokuLib.NotifyRequestDto;
-    requestBody.client.id = req.client.id;
-    requestBody.virtual_account_info.virtual_account_number = req.body.virtual_account_info.virtual_account_number;
-    requestBody.order.amount = req.body.order.amount;
-    requestBody.virtual_account_payment.date = req.body.virtual_account_payment.date;
-    requestBody.virtual_account_payment.channel_code = req.body.virtual_account_payment.channel_code;
-    requestBody.virtual_account_payment.reference_number = req.body.virtual_account_payment.reference_number;
-    requestBody.virtual_account_payment.systrace_number = req.body.virtual_account_payment.systrace_number;
-    requestBody.order.invoice_number = req.body.order.invoice_number;
-    requestBody.security.check_sum = req.body.security.check_sum;
-
+    requestBody = req.body;
     // Input your process here
-
     let responseBody = dokuLib.NotifyResponseDto;
-    responseBody.client.id = requestBody.client.id;
-    responseBody.virtual_account_info.virtual_account_number = requestBody.virtual_account_info.virtual_account_number;
-    responseBody.order.amount = requestBody.order.amount;
-    responseBody.order.invoice_number = requestBody.order.invoice_number;
-    responseBody.security.check_sum = requestBody.security.check_sum;
+    responseBody = requestBody;
 
     res.send(responseBody);
 });
