@@ -6,7 +6,11 @@ const app = express();
 const port = 3000;
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(bodyParser.json());
+app.use(bodyParser.json({
+    verify: (req, res, buf) => {
+        req.rawBody = buf.toString();
+    }
+}));
 
 let apiPath = process.argv.slice(2).join('');
 
@@ -64,13 +68,22 @@ async function post(setupConfiguration, paymentCodeRequest, channel) {
 }
 
 app.post(apiPath + '/notify', function (req, res) {
-    let requestBody = dokuLib.NotifyRequestDto;
-    requestBody = req.body;
-    // Input your process here
-    let responseBody = dokuLib.NotifyResponseDto;
-    responseBody = requestBody;
+    var requestHeader = req.headers;
 
-    res.send(responseBody);
+    (async function () {
+        let signature = await dokuLib.getSignature(requestHeader, req.rawBody, 'SK-hCJ42G28TA0MKG9LE2E_1');
+        if (signature == requestHeader.signature) {
+            // Do Something with the response
+            responseBody = dokuLib.getNotification(req.body);
+            console.log(responseBody);
+            res.send(responseBody);
+        } else {
+            // Do Something with the response
+            responseBody = dokuLib.getNotification(req.body);
+            console.log(responseBody);
+            res.status(400).send(responseBody);
+        }
+    })();
 });
 
 function randomInvoice(length) {
