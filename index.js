@@ -69,6 +69,7 @@ async function post(setupConfiguration, paymentCodeRequest, channel) {
 
 app.post(apiPath + '/notify', function (req, res) {
     var requestHeader = req.headers;
+        requestHeader['request-target'] = '/notify';
 
     (async function () {
         let signature = await dokuLib.getSignature(requestHeader, req.rawBody, 'SK-hCJ42G28TA0MKG9LE2E_1');
